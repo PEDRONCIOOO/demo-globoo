@@ -296,7 +296,7 @@ export default function Orb({
   }, [hue, hoverIntensity, rotateOnHover, forceHoverState]);
 
   return (
-    <div ref={ctnDom} className="w-full h-full relative">
+    <div ref={ctnDom} className="w-full h-full relative ml-12">
       {children} {/* Render children inside the container */}
     </div>
   );
