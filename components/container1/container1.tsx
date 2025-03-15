@@ -1,10 +1,13 @@
-import Image from "next/image";
+"use client";
+
+import dynamic from "next/dynamic";
 
 import Container2 from "../container2/container2";
 import { ButtonGlitchBrightness } from "../buttonAnimated";
 
 // Assets and Components
-import { LogoG } from "@/public";
+import { LogoG3D } from "@/public";
+import LogoAnimated from "@/public/logoAnimated.json";
 import Orb from "@/react-bits/Orb/Orb";
 import Squares from "@/react-bits/Squares/Squares";
 
@@ -12,6 +15,9 @@ import Squares from "@/react-bits/Squares/Squares";
 const MAX_WIDTH = "max-w-7xl";
 const TEXT_COLOR = "text-cyan-500";
 const TEXT_SIZE = "text-3xl";
+
+// Dynamically import Lottie
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
 export default function Container1() {
   return (
@@ -64,15 +70,10 @@ export default function Container1() {
                 hoverIntensity={0.5}
                 hue={0}
               >
-                <div className="absolute w-full h-full flex items-center justify-end right-6">
-                  <Image
-                    priority
-                    alt="Globoo Logo"
-                    className="object-contain"
-                    draggable={false}
-                    height={120} // Calculated to maintain 2.5:1 aspect ratio (300 / 2.5 = 120)
-                    src={LogoG}
-                    width={450} // Set to 300px as requested
+                <div className="absolute w-full h-full flex items-center justify-end right-16">
+                  <Lottie
+                    animationData={LogoAnimated}
+                    style={{ width: 420, height: 450 }}
                   />
                 </div>
               </Orb>
