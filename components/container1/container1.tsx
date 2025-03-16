@@ -6,7 +6,6 @@ import Container2 from "../container2/container2";
 import { ButtonGlitchBrightness } from "../buttonAnimated";
 
 // Assets and Components
-import { LogoG3D } from "@/public";
 import LogoAnimated from "@/public/logoAnimated.json";
 import Orb from "@/react-bits/Orb/Orb";
 import Squares from "@/react-bits/Squares/Squares";
@@ -56,7 +55,8 @@ export default function Container1() {
               <p
                 className={`${TEXT_COLOR} text-[1.4em] mb-6 font-bold max-w-sm`}
               >
-                carteira criptográfia, banco digital, crypto exchange e tokenizações.
+                carteira criptográfia, banco digital, crypto exchange e
+                tokenizações.
               </p>
               {/* Button: Abra sua conta agora! */}
               <ButtonGlitchBrightness />
