@@ -7,6 +7,7 @@ import { ButtonGlitchBrightness } from "../buttonAnimated";
 
 // Assets and Components
 import LogoAnimated from "@/public/logoAnimated.json";
+import LogoAnimated2 from "@/public/globoo-animated.json";
 import Orb from "@/react-bits/Orb/Orb";
 import Squares from "@/react-bits/Squares/Squares";
 
@@ -70,10 +71,10 @@ export default function Container1() {
                 hoverIntensity={0.5}
                 hue={0}
               >
-                <div className="absolute w-full h-full flex items-center justify-end right-16">
+                <div className="absolute w-full h-full flex items-center justify-end right-8">
                   <Lottie
-                    animationData={LogoAnimated}
-                    style={{ width: 420, height: 450 }}
+                    animationData={LogoAnimated2}
+                    style={{ width: 500, height: 500 }}
                   />
                 </div>
               </Orb>

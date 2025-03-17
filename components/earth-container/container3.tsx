@@ -64,7 +64,7 @@ export default function GloboContainer() {
           atmosphereAltitude={0.1}
           atmosphereColor="#00ffff" // Cyan atmosphere for a modern touch
           backgroundColor="rgba(0,0,0,0)" // Transparent background
-          globeImageUrl="/trycyan.jpeg" // Earth texture
+          globeImageUrl="/textureDARK.jpg" // Earth texture
           onGlobeClick={() =>
             globeEl.current?.pointOfView({ altitude: 1.8 }, 2000)
           } // Zoom on click
