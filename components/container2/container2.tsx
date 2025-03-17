@@ -28,11 +28,11 @@ export default function Container2() {
         cardsArray.map((card, index) => (
           <SpotlightCard
             key={index}
-            className="custom-spotlight-card w-60 h-60 border-3 border-cyan-500 rounded-lg bg-gray-300 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 hover:scale-105 ease-in-out transition-all"
+            className="custom-spotlight-card w-72 h-72 border-3 border-cyan-500 rounded-lg bg-gray-300 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 hover:scale-105 ease-in-out transition-all"
             spotlightColor="rgba(0, 229, 255, 0.2)"
           >
             <div className="flex flex-col items-center justify-between h-full p-4 text-center">
-              <div className="flex-1 flex items-center justify-center">
+              <div className="flex-none flex items-center justify-center">
                 <motion.div
                   animate={{ scale: [1, 1.1, 1] }} // Scale animation: 1 -> 1.1 -> 1
                   transition={{
@@ -43,14 +43,14 @@ export default function Container2() {
                 >
                   <Lottie
                     animationData={card.icon}
-                    style={{ width: 70, height: 70 }}
+                    style={{ width: 60, height: 60 }}
                   />
                 </motion.div>
               </div>
-              <h3 className="text-lg font-bold text-black dark:text-white h-14 flex items-center justify-center">
+              <h3 className="text-lg font-bold text-black dark:text-white h-12 flex items-center justify-center text-wrap break-words">
                 {card.title}
               </h3>
-              <p className="text-sm text-gray-700 dark:text-gray-300 flex-1 flex items-center justify-center">
+              <p className="text-sm text-gray-700 dark:text-gray-300 flex-1 flex items-start justify-center w-full text-wrap break-words">
                 {card.description}
               </p>
             </div>
