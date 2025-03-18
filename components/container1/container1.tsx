@@ -6,8 +6,8 @@ import Container2 from "../container2/container2";
 import { ButtonGlitchBrightness } from "../buttonAnimated";
 
 // Assets and Components
-import LogoAnimated from "@/public/logoAnimated.json";
 import LogoAnimated2 from "@/public/globoo-animated.json";
+import FinalAnimation from "@/public/finalanimated.json";
 import Orb from "@/react-bits/Orb/Orb";
 import Squares from "@/react-bits/Squares/Squares";
 
@@ -73,7 +73,7 @@ export default function Container1() {
               >
                 <div className="absolute w-full h-full flex items-center justify-end right-8">
                   <Lottie
-                    animationData={LogoAnimated2}
+                    animationData={FinalAnimation}
                     style={{ width: 500, height: 500 }}
                   />
                 </div>

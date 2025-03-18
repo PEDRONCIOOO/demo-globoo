@@ -2,17 +2,15 @@
 
 import { useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
-import { motion } from "framer-motion"; // Import Framer Motion
+import { motion } from "framer-motion";
+import { GlobeMethods } from "react-globe.gl";
+
+import Particles from "@/react-bits/Particles/Particles";
 
 // Dynamically import the Globe component with SSR disabled
 const Globe = dynamic(() => import("react-globe.gl"), {
   ssr: false,
 });
-
-// Type definition for впервые the Globe ref
-import { GlobeMethods } from "react-globe.gl";
-
-import CountUp from "@/react-bits/CountUp/CountUp";
 
 export default function GloboContainer() {
   const globeEl = useRef<GlobeMethods | undefined>(undefined);
@@ -22,15 +20,26 @@ export default function GloboContainer() {
 
     if (globe) {
       try {
-        // Enable auto-rotation with a smoother speed
-        globe.controls().autoRotate = true;
-        globe.controls().autoRotateSpeed = 0.3;
+        // Wait for the globe to be fully initialized
+        globe.controls().autoRotate = true; // Enable auto-rotation
+        globe.controls().autoRotateSpeed = 0.3; // Adjust speed as needed
+        globe.controls().enableZoom = false; // Disable zoom entirely
+        globe.controls().enableDamping = true; // Smooth dragging
+        globe.controls().dampingFactor = 0.05; // Damping factor for smoothness
+        globe.controls().update(); // Apply the settings
 
-        // Adjust the initial camera position with a slight zoom
-        globe.pointOfView({ lat: 10, lng: 0, altitude: 2.2 }, 1000); // Smooth transition over 1s
+        // Prevent zooming by intercepting wheel events
+        const preventZoom = (event: WheelEvent) => {
+          event.preventDefault();
+          event.stopPropagation();
+        };
 
-        // Gradually zoom in over 5s for a cinematic effect
-        globe.pointOfView({ altitude: 2.0 }, 5000);
+        window.addEventListener("wheel", preventZoom, { passive: false });
+
+        // Cleanup on component unmount
+        return () => {
+          window.removeEventListener("wheel", preventZoom);
+        };
       } catch (error) {}
     }
   }, []);
@@ -51,99 +60,79 @@ export default function GloboContainer() {
   };
 
   return (
-    <div className="flex h-screen items-center justify-center bg-gradient-to-br from-black via-black to-cyan-900 text-white overflow-hidden">
-      {/* Globe Section with Animation */}
-      <motion.div
-        animate={{ opacity: 1, scale: 1 }}
-        className="w-1/2 h-full flex items-center justify-center"
-        initial={{ opacity: 0, scale: 0.8 }}
-        transition={{ duration: 1.5, ease: "easeOut" }}
-      >
-        <Globe
-          ref={globeEl}
-          atmosphereAltitude={0.1}
-          atmosphereColor="#00ffff" // Cyan atmosphere for a modern touch
-          backgroundColor="rgba(0,0,0,0)" // Transparent background
-          globeImageUrl="/textureDARK.jpg" // Earth texture
-          onGlobeClick={() =>
-            globeEl.current?.pointOfView({ altitude: 1.8 }, 2000)
-          } // Zoom on click
+    <div className="relative h-screen w-full overflow-hidden bg-black">
+      {/* Particles Background */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <Particles
+          alphaParticles={true}
+          disableRotation={false}
+          moveParticlesOnHover={true}
+          particleBaseSize={2}
+          particleColors={["#ffffff", "#00ffff", "#00b7b7"]}
+          particleCount={150}
+          particleSpread={8}
+          speed={0.2}
         />
-      </motion.div>
+      </div>
 
-      {/* Text Section with Animation */}
-      <motion.div
-        animate="visible"
-        className="w-1/2 h-full flex items-center justify-center p-8"
-        initial="hidden"
-        variants={textVariants}
-      >
-        <div className="text-left space-y-6">
-          <motion.h1
-            className="text-5xl md:text-6xl font-bold mb-4 w-full md:w-3/4 leading-tight"
-            variants={itemVariants}
-          >
-            Uma estrutura preparada para{" "}
-            <span className="text-cyan-400">transações internacionais</span>
-          </motion.h1>
-          <motion.p
-            className="text-xl md:text-2xl w-full md:w-[600px] leading-relaxed"
-            variants={itemVariants}
-          >
-            Transferir recursos nunca foi tão fácil e programável quanto agora.
-            Através de nossas soluções, não existem barreiras para que a sua
-            empresa possa crescer.
-          </motion.p>
-          <motion.div className="space-y-4 mt-6" variants={textVariants}>
-            <motion.div
-              className="flex items-center space-x-2"
+      {/* Main Content */}
+      <div className="relative z-10 flex h-full items-center justify-center bg-gradient-to-br from-black via-black to-cyan-900 text-white">
+        {/* Globe Section with Animation */}
+        <motion.div
+          animate={{ opacity: 1, scale: 1 }}
+          className="w-1/2 h-full flex items-center justify-center"
+          initial={{ opacity: 0, scale: 0.8 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+        >
+          <Globe
+            ref={globeEl}
+            atmosphereAltitude={0.15}
+            atmosphereColor="#00ffff"
+            backgroundColor="rgba(0,0,0,0)"
+            globeImageUrl="/textureDARK.jpg"
+            onGlobeReady={() => {
+              const globe = globeEl.current;
+
+              if (globe) {
+                const controls = globe.controls();
+
+                controls.autoRotate = true;
+                controls.autoRotateSpeed = 0.5;
+                controls.enableZoom = false;
+                controls.enableDamping = true;
+                controls.dampingFactor = 0.05;
+                controls.update();
+              }
+            }}
+          />
+        </motion.div>
+
+        {/* Text Section with Animation */}
+        <motion.div
+          animate="visible"
+          className="w-1/2 h-full flex items-center justify-center p-8"
+          initial="hidden"
+          variants={textVariants}
+        >
+          <div className="text-left space-y-6">
+            <motion.h1
+              className="text-5xl md:text-6xl font-bold mb-4 w-full md:w-3/4 leading-tight"
               variants={itemVariants}
             >
-              <CountUp
-                className="text-lg text-cyan-400 font-semibold"
-                direction="up"
-                duration={2}
-                from={0}
-                separator=","
-                to={500000000} // 500 million
-              />
-              <span className="text-lg text-gray-300">
-                de transações realizadas
-              </span>
-            </motion.div>
-            <motion.div
-              className="flex items-center space-x-2"
+              Uma estrutura preparada para{" "}
+              <span className="text-cyan-400">transações internacionais</span>
+            </motion.h1>
+            <motion.p
+              className="text-xl md:text-2xl w-full md:w-[600px] leading-relaxed"
               variants={itemVariants}
             >
-              <CountUp
-                className="text-lg text-cyan-400 font-semibold"
-                direction="up"
-                duration={2}
-                from={0}
-                to={135} // 135 currencies
-              />
-              <span className="text-lg text-gray-300">
-                moedas e formas de pagamentos acelerados
-              </span>
-            </motion.div>
-            <motion.div
-              className="flex items-center space-x-2"
-              variants={itemVariants}
-            >
-              <CountUp
-                className="text-lg text-cyan-400 font-semibold"
-                direction="up"
-                duration={2}
-                from={0}
-                to={4} // 4 continents
-              />
-              <span className="text-lg text-gray-300">
-                continentes com fornecedores locais
-              </span>
-            </motion.div>
-          </motion.div>
-        </div>
-      </motion.div>
+              Transferir recursos nunca foi tão fácil e programável quanto
+              agora. Através de nossas soluções, não existem barreiras para que
+              a sua empresa possa crescer.
+            </motion.p>
+          </div>
+        </motion.div>
+      </div>
     </div>
   );
 }
