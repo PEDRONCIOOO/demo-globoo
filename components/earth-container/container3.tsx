@@ -245,7 +245,7 @@ export default function GloboContainer() {
                 <span className="relative inline-block">
                   <span className="text-cyan-400">
                     <TypingText
-                      text="transações internacionais"
+                      text="trransações internacionais"
                       typingSpeed={40}
                     />
                   </span>
