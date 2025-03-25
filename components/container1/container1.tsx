@@ -9,6 +9,7 @@ import { ButtonGlitchBrightness } from "../buttonAnimated";
 import logoGlobooAnimated from "@/public/logofinal.json";
 import Orb from "@/react-bits/Orb/Orb";
 import Squares from "@/react-bits/Squares/Squares";
+import InfiniteSlider from "../slider-component/slider";
 
 // Constants for better maintainability
 const MAX_WIDTH = "max-w-7xl";
@@ -80,7 +81,6 @@ export default function Container1() {
             </div>
           </div>
         </div>
-
         {/* Cards Grid */}
         <Container2 />
       </div>
