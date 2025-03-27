@@ -8,6 +8,7 @@ import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
+import { ChatButton } from "@/components/agent-model"; // Import the ChatButton
 
 export const metadata: Metadata = {
   title: {
@@ -46,16 +47,11 @@ export default function RootLayout({
             <Navbar />
             <main className="flex-grow">{children}</main>
             <footer className="w-full flex items-center justify-center py-3">
-              <Link
-                isExternal
-                className="flex items-center gap-1 text-current"
-                href="globoo.io"
-                title="globoo.io"
-              >
-                <span className="text-default-600">Powered by</span>
-                <p className="text-primary">Globoo Developers</p>
-              </Link>
+              {/* Footer content */}
             </footer>
+
+            {/* Add the AI chat button */}
+            <ChatButton />
           </div>
         </Providers>
       </body>

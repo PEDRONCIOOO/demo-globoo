@@ -325,18 +325,6 @@ const Container3: React.FC = () => {
       accentColor: "#A88BFA",
     },
     {
-      title: "Gateway de Pagamento em Cripto",
-      description: "Aceitando criptomoedas como método de pagamento.",
-      features: [
-        "Transações globais instantâneas",
-        "Baixas taxas de transação",
-        "Aceitação de múltiplas criptomoedas",
-      ],
-      bgGradient:
-        "bg-gradient-to-br from-blue-700/60 via-cyan-800/70 to-black/80",
-      accentColor: "#0FAAFF",
-    },
-    {
       title: "Crowdfunding",
       description:
         "Através da nossa plataforma, captações de recursos são verdadeiramente tokenizadas do início ao fim.",
