@@ -140,12 +140,12 @@ const ContainerCrypto: React.FC = () => {
   };
 
   const handleIconError = (symbol: string) => {
-    setIconErrors((prev) => ({ ...prev, [symbol]: true }));
+    setIconErrors(prev => ({ ...prev, [symbol]: true }));
   };
 
   const getIconUrl = (symbol: string) => {
-    // Using CryptoIcons - a reliable source of crypto icons
-    return `https://unpkg.com/cryptocurrency-icons@1.0.0/128/color/${symbol.toLowerCase()}.png`;
+    // Try a more reliable source - CoinGecko has better API and icons
+    return `https://cdn.jsdelivr.net/gh/spothq/cryptocurrency-icons@master/128/color/${symbol.toLowerCase()}.png`;
   };
 
   const displayData = getDisplayData();
@@ -153,15 +153,15 @@ const ContainerCrypto: React.FC = () => {
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-black via-black to-cyan-700 py-16 overflow-hidden">
       {/* Background elements */}
-      <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-blue-700/20 blur-[100px] -z-10"></div>
-      <div className="absolute bottom-20 -left-20 w-80 h-80 rounded-full bg-cyan-500/20 blur-[100px] -z-10"></div>
+      <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-blue-700/20 blur-[100px] -z-10" />
+      <div className="absolute bottom-20 -left-20 w-80 h-80 rounded-full bg-cyan-500/20 blur-[100px] -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
           className="text-center mb-12"
+          initial={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.5 }}
         >
           <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
             Cotações de Criptomoedas
@@ -263,7 +263,7 @@ const ContainerCrypto: React.FC = () => {
                     <tr>
                       <td colSpan={7} className="p-8 text-center">
                         <div className="flex flex-col items-center justify-center">
-                          <div className="w-10 h-10 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin"></div>
+                          <div className="w-10 h-10 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin" />
                           <p className="mt-4 text-gray-400">
                             Carregando cotações...
                           </p>
@@ -337,12 +337,19 @@ const ContainerCrypto: React.FC = () => {
                             <div className="flex items-center gap-3">
                               <div className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center text-xs font-bold overflow-hidden">
                                 {!iconErrors[crypto.symbol] ? (
-                                  <img
-                                    src={getIconUrl(crypto.symbol)}
-                                    alt={crypto.symbol}
-                                    className="w-full h-full object-cover"
-                                    onError={() => handleIconError(crypto.symbol)}
-                                  />
+                                  <div className="relative w-full h-full">
+                                    <Image
+                                      alt={crypto.symbol}
+                                      fill
+                                      sizes="32px"
+                                      className="object-cover"
+                                      src={getIconUrl(crypto.symbol)}
+                                      onError={() =>
+                                        handleIconError(crypto.symbol)
+                                      }
+                                      unoptimized // Add this to bypass image optimization for external icons
+                                    />
+                                  </div>
                                 ) : (
                                   crypto.symbol.slice(0, 2)
                                 )}
