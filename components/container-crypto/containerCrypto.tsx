@@ -151,10 +151,10 @@ const ContainerCrypto: React.FC = () => {
   const displayData = getDisplayData();
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-b from-black via-black to-cyan-700 py-16 overflow-hidden">
+    <div className="relative min-h-screen py-16 overflow-hidden">
       {/* Background elements */}
-      <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-blue-700/20 blur-[100px] -z-10" />
-      <div className="absolute bottom-20 -left-20 w-80 h-80 rounded-full bg-cyan-500/20 blur-[100px] -z-10" />
+      <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full blur-[100px] -z-10" />
+      <div className="absolute bottom-20 -left-20 w-80 h-80 rounded-full blur-[100px] -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div

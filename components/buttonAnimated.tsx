@@ -1,7 +1,7 @@
 export function ButtonGlitchBrightness() {
   return (
     <button className="group relative inline-flex items-center gap-1 overflow-hidden rounded-xl bg-black/80 px-6 py-3 text-sm font-medium text-white duration-300 hover:bg-black dark:bg-white/80 dark:text-black dark:hover:bg-white">
-      <TextGlitch text="Abra sua conta agora!" />
+      <TextGlitch text="Abra sua conta agora." />
       <Brightness />
     </button>
   );

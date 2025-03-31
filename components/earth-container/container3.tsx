@@ -263,14 +263,14 @@ export default function GloboContainer() {
             >
               Transferir recursos nunca foi tão fácil e programável quanto
               agora. Através de nossas soluções, não existem barreiras para que
-              a sua empresa possa crescer.
+              você ou sua empresa cresçam.
             </motion.p>
 
             {/* Stats Section with Counter Animation */}
             <motion.div
               className="flex gap-8 mt-6"
-              variants={itemVariants}
               transition={{ delay: 0.6 }}
+              variants={itemVariants}
             >
               <div className="text-center">
                 <p className="text-4xl font-bold text-cyan-400">

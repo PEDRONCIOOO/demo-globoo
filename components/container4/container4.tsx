@@ -88,6 +88,7 @@ const Container4: React.FC = () => {
 
   const getColor = (category: string) => {
     const found = categories.find((cat) => cat.id === category);
+
     return found ? found.color : "#3DBEFF";
   };
 
@@ -100,6 +101,7 @@ const Container4: React.FC = () => {
       item.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
       item.answer.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = !activeCategory || item.category === activeCategory;
+
     return matchesSearch && matchesCategory;
   });
 
@@ -140,25 +142,25 @@ const Container4: React.FC = () => {
     <div className="relative min-h-screen bg-gradient-to-b from-black via-cyan-950 to-black py-20 overflow-hidden">
       {/* Background accent elements */}
       <motion.div
-        className="absolute top-40 right-20 w-80 h-80 rounded-full bg-cyan-500 blur-[100px] -z-10"
-        variants={accentVariants}
-        initial="initial"
         animate="animate"
+        className="absolute top-40 right-20 w-80 h-80 rounded-full bg-cyan-500 blur-[100px] -z-10"
+        initial="initial"
+        variants={accentVariants}
       />
       <motion.div
-        className="absolute bottom-40 left-20 w-96 h-96 rounded-full bg-cyan-700 blur-[120px] -z-10"
-        variants={accentVariants}
-        initial="initial"
         animate="animate"
+        className="absolute bottom-40 left-20 w-96 h-96 rounded-full bg-cyan-700 blur-[120px] -z-10"
+        initial="initial"
         transition={{ delay: 1.5 }}
+        variants={accentVariants}
       />
 
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center mb-16"
+          initial={{ opacity: 0, y: -30 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <h2 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-cyan-600 mb-4">
             Perguntas Frequentes
@@ -172,15 +174,15 @@ const Container4: React.FC = () => {
         <div className="mb-10">
           <div className="relative mb-8">
             <motion.div
-              initial={{ width: 0 }}
               animate={{ width: "100%" }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
               className="relative"
+              initial={{ width: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
             >
               <input
                 ref={searchRef}
-                type="text"
                 placeholder="Buscar uma pergunta..."
+                type="text"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full bg-gray-900/50 text-white p-4 pl-12 pr-4 rounded-xl border border-gray-700 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all"
@@ -190,10 +192,10 @@ const Container4: React.FC = () => {
 
             {searchTerm && (
               <motion.button
-                initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
                 className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-colors"
+                exit={{ opacity: 0, scale: 0.8 }}
+                initial={{ opacity: 0, scale: 0.8 }}
                 onClick={() => {
                   setSearchTerm("");
                   searchRef.current?.focus();
@@ -205,9 +207,9 @@ const Container4: React.FC = () => {
           </div>
 
           <motion.div
+            animate={{ opacity: 1 }}
             className="flex flex-wrap gap-3 mb-8"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.5 }}
           >
             <button
@@ -251,18 +253,18 @@ const Container4: React.FC = () => {
         </div>
 
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
           animate="visible"
           className="space-y-5"
+          initial="hidden"
+          variants={containerVariants}
         >
           {filteredFAQs.length > 0 ? (
             filteredFAQs.map((faq, index) => (
               <motion.div
                 key={index}
-                variants={childVariants}
                 className="bg-gray-900/50 border border-gray-800 rounded-xl overflow-hidden backdrop-blur-sm"
                 layoutId={`faq-${index}`}
+                variants={childVariants}
                 style={{
                   borderLeft: `4px solid ${getColor(faq.category)}`,
                   boxShadow:
@@ -289,11 +291,11 @@ const Container4: React.FC = () => {
                 <AnimatePresence>
                   {activeIndex === index && (
                     <motion.div
-                      initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
                       className="overflow-hidden"
+                      exit={{ height: 0, opacity: 0 }}
+                      initial={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
                     >
                       <div className="px-5 pb-5 pt-2 text-gray-300 border-t border-gray-800">
                         <p>{faq.answer}</p>
@@ -305,9 +307,9 @@ const Container4: React.FC = () => {
             ))
           ) : (
             <motion.div
-              initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               className="text-center py-16"
+              initial={{ opacity: 0 }}
             >
               <p className="text-gray-400 text-xl">
                 Nenhuma pergunta encontrada para &quot;{searchTerm}&quot;
@@ -323,9 +325,9 @@ const Container4: React.FC = () => {
         </motion.div>
 
         <motion.div
+          animate={{ opacity: 1, y: 0 }}
           className="mt-20 text-center"
           initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 0.8 }}
         >
           <h3 className="text-2xl font-semibold text-white mb-4">

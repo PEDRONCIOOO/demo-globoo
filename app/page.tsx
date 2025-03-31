@@ -1,4 +1,3 @@
-import ContainerCrypto from "@/components/container-crypto/containerCrypto";
 import Container1 from "@/components/container1/container1";
 import Container3 from "@/components/container3/container3";
 import Container4 from "@/components/container4/container4";
@@ -12,7 +11,6 @@ export default function Home() {
 
       <Container3 />
       <Container4 />
-      <ContainerCrypto />
     </>
   );
 }
