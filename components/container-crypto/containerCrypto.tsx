@@ -402,7 +402,7 @@ const ContainerCrypto: React.FC = () => {
                   locale: ptBR,
                 })}
               </span>
-              <span>Dados fornecidos por CoinMarketCap</span>
+              <span>Dados fornecidos por Globoo.io</span>
             </div>
           )}
         </div>

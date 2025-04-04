@@ -1,18 +1,18 @@
 "use client";
 
 import { motion, useAnimation } from "framer-motion";
-import { useEffect, Suspense } from "react";
+import { useEffect } from "react";
+
 import Particles from "@/react-bits/Particles/Particles";
 import Lottie from "lottie-react";
-import { ButtonGlitchBrightness } from "@/components/buttonAnimated";
 
 import baixarAnimation from "../../public/baixar.json";
 import carteiraAnimation from "../../public/carteira.json";
 import coinsAnimation from "../../public/coins.json";
+
 import ContainerCrypto from "@/components/container-crypto/containerCrypto";
 import FAQComponent from "@/components/faq-compo/faqcp";
-
-// Import the client-side wrapper instead
+import { ButtonGlitchBrightness } from "@/components/buttonAnimated";
 
 export default function WalletHighlightSection() {
   const controls = useAnimation();
@@ -60,8 +60,33 @@ export default function WalletHighlightSection() {
         animate={controls}
         variants={containerVariants}
       >
-        {/* ...rest of your component... */}
-        
+        {/* Hero Heading Container */}
+        <motion.div 
+          className="max-w-4xl mx-auto mb-16"
+          variants={containerVariants}
+        >
+          <motion.h1 
+            className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-cyan-400 bg-clip-text text-transparent"
+            variants={itemVariants}
+          >
+            A carteira criptográfica mais confiável e segura
+          </motion.h1>
+          
+          <motion.p 
+            className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
+            variants={itemVariants}
+          >
+            Compre, armazene, colete NFTs, troque e ganhe criptomoedas.
+          </motion.p>
+          
+          <motion.div 
+            className="mt-8"
+            variants={itemVariants}
+          >
+            <ButtonGlitchBrightness />
+          </motion.div>
+        </motion.div>
+
         {/* Feature Grid - Checkmarks */}
         <motion.div
           className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-10 text-left max-w-5xl mx-auto"
@@ -88,7 +113,7 @@ export default function WalletHighlightSection() {
         <ContainerCrypto />
         {/* 3 Steps Section with Lottie animations */}
         <motion.div
-          className="mt-32"
+          className="mt-22"
           initial="hidden"
           animate={controls}
           variants={containerVariants}
@@ -149,7 +174,6 @@ export default function WalletHighlightSection() {
       </motion.div>
       
       <div className="mt-20">
-        {/* Use the client wrapper instead of direct dynamic import */}
         <FAQComponent />
       </div>
     </div>

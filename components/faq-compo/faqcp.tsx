@@ -65,7 +65,7 @@ const FAQComponent: React.FC = () => {
   }
 
   return (
-    <div className="w-full max-w-3xl mx-auto bg-gray-900 p-8 rounded-lg shadow-xl animate-fade-in-up">
+    <div className="w-full max-w-6xl rounded-xl mx-auto bg-black border border-gray-500 p-8 shadow-xl animate-fade-in-up">
       <h1 className="text-4xl font-bold text-white mb-8 text-center">
         Dúvidas frequentes
       </h1>
@@ -82,7 +82,7 @@ const FAQComponent: React.FC = () => {
             }}
           >
             <button
-              className="w-full flex justify-between items-center p-4 text-left bg-gray-800 hover:bg-gray-700 rounded-lg text-teal-400 font-medium transition-all duration-300 ease-in-out hover:scale-[1.01] active:scale-[0.99]"
+              className="w-full flex justify-between items-center p-4 text-left bg-gray-800 hover:bg-gray-700 rounded-lg text-cyan-400 font-medium transition-all duration-300 ease-in-out hover:scale-[1.01] active:scale-[0.99]"
               onClick={() => toggleFAQ(index)}
               aria-expanded={activeIndex === index}
               aria-controls={`faq-answer-${index}`}

@@ -24,7 +24,7 @@ export const ChatMessage: React.FC<MessageProps> = ({ message }) => {
           className={`w-8 h-8 rounded-full relative ${isUser ? "bg-primary" : "bg-default-200"}`}
         >
           <Image
-            src={isUser ? "/user-avatar.png" : "/g-globoo.svg"}
+            src={isUser ? "/user-avatar.webp" : "/g-globoo.svg"}
             alt={isUser ? "Você" : "Globoo AI"}
             width={32}
             height={32}
