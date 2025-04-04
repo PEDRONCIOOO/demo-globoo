@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useAnimation } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import Particles from "@/react-bits/Particles/Particles";
 import Lottie from "lottie-react";
 import { ButtonGlitchBrightness } from "@/components/buttonAnimated";
@@ -10,6 +10,9 @@ import baixarAnimation from "../../public/baixar.json";
 import carteiraAnimation from "../../public/carteira.json";
 import coinsAnimation from "../../public/coins.json";
 import ContainerCrypto from "@/components/container-crypto/containerCrypto";
+import FAQComponent from "@/components/faq-compo/faqcp";
+
+// Import the client-side wrapper instead
 
 export default function WalletHighlightSection() {
   const controls = useAnimation();
@@ -57,26 +60,8 @@ export default function WalletHighlightSection() {
         animate={controls}
         variants={containerVariants}
       >
-        <motion.h1
-          className="text-3xl md:text-5xl font-extrabold mb-6"
-          variants={itemVariants}
-        >
-          A <span className="text-cyan-400">carteira digital</span> para o
-          futuro
-        </motion.h1>
-
-        <motion.p
-          className="text-xl md:text-1xl text-gray-300 mb-10 max-w-3xl mx-auto"
-          variants={itemVariants}
-        >
-          Armazene, envie e receba criptomoedas com segurança em nossa carteira
-          de última geração. Controle total sobre seus ativos digitais.
-        </motion.p>
-
-        <motion.div variants={itemVariants}>
-          <ButtonGlitchBrightness />
-        </motion.div>
-
+        {/* ...rest of your component... */}
+        
         {/* Feature Grid - Checkmarks */}
         <motion.div
           className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-10 text-left max-w-5xl mx-auto"
@@ -162,6 +147,11 @@ export default function WalletHighlightSection() {
           </motion.div>
         </motion.div>
       </motion.div>
+      
+      <div className="mt-20">
+        {/* Use the client wrapper instead of direct dynamic import */}
+        <FAQComponent />
+      </div>
     </div>
   );
 }
